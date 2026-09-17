@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Members - LibraSys{% endblock %}
+{% block nav_members %}active{% endblock %}
+{% block page_title %}Members Management{% endblock %}
+{% block content %}
+<div class="toolbar">
+  <input type="text" id="searchInput" class="search-input" placeholder="Search by name or email...">
+  <button class="btn btn-primary" onclick="openMemberModal()">+ Add Member</button>
+</div>
+
+<div class="panel">
+  <table class="data-table">
+    <thead>
+      <tr><th>Name</th><th>Email</th><th>Phone</th><th>Joined</th><th>Status</th><th>Actions</th></tr>
+    </thead>
+    <tbody id="membersTableBody"></tbody>
+  </table>
+</div>
+
+<div id="memberModal" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="memberModalTitle">Add New Member</h3>
+      <button class="modal-close" onclick="closeMemberModal()">&times;</button>
+    </div>
+    <form id="memberForm">
+      <input type="hidden" id="memberId">
+      <div class="form-row">
+        <label>Full Name</label>
+        <input type="text" id="memberName" required>
+      </div>
+      <div class="form-row">
+        <label>Email</label>
+        <input type="email" id="memberEmail" required>
+      </div>
+      <div class="form-row">
+        <label>Phone</label>
+        <input type="text" id="memberPhone" required placeholder="e.g. +919876543210">
+      </div>
+      <div class="form-row">
+        <label>Address</label>
+        <input type="text" id="memberAddress">
+      </div>
+      <div class="form-row checkbox-row">
+        <label><input type="checkbox" id="memberActive" checked> Active Member</label>
+      </div>
+      <div class="form-error" id="memberFormError"></div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" onclick="closeMemberModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Member</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{% static 'js/members.js' %}"></script>{% endblock %}

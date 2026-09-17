@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}LibraSys - Library Management System{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">📚</div>
+      <div class="brand-text">
+        <h1>LibraSys</h1>
+        <span>Library Management</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="{% url 'dashboard' %}" class="nav-link {% block nav_dashboard %}{% endblock %}">
+        <span class="nav-icon">🏠</span><span class="nav-text">Dashboard</span>
+      </a>
+      <a href="{% url 'books' %}" class="nav-link {% block nav_books %}{% endblock %}">
+        <span class="nav-icon">📗</span><span class="nav-text">Books</span>
+      </a>
+      <a href="{% url 'members' %}" class="nav-link {% block nav_members %}{% endblock %}">
+        <span class="nav-icon">👥</span><span class="nav-text">Members</span>
+      </a>
+      <a href="{% url 'transactions' %}" class="nav-link {% block nav_transactions %}{% endblock %}">
+        <span class="nav-icon">🔄</span><span class="nav-text">Issue / Return</span>
+      </a>
+      <a href="/admin/" class="nav-link" target="_blank">
+        <span class="nav-icon">⚙️</span><span class="nav-text">Admin Panel</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Library Management System</p>
+      <span>v1.0.0</span>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <h2>{% block page_title %}Dashboard{% endblock %}</h2>
+      <div class="topbar-right">
+        <span class="date-badge" id="todayDate"></span>
+      </div>
+    </header>
+    <div class="content">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+</div>
+<div id="toast" class="toast"></div>
+<script src="{% static 'js/api.js' %}"></script>
+{% block scripts %}{% endblock %}
+<script>
+  document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard - LibraSys{% endblock %}
+{% block nav_dashboard %}active{% endblock %}
+{% block page_title %}Dashboard Overview{% endblock %}
+{% block content %}
+<div class="stats-grid">
+  <div class="stat-card stat-blue">
+    <div class="stat-icon">📚</div>
+    <div class="stat-info"><span class="stat-value" id="statTotalBooks">-</span><span class="stat-label">Total Books</span></div>
+  </div>
+  <div class="stat-card stat-green">
+    <div class="stat-icon">✅</div>
+    <div class="stat-info"><span class="stat-value" id="statAvailable">-</span><span class="stat-label">Available Copies</span></div>
+  </div>
+  <div class="stat-card stat-purple">
+    <div class="stat-icon">👥</div>
+    <div class="stat-info"><span class="stat-value" id="statMembers">-</span><span class="stat-label">Total Members</span></div>
+  </div>
+  <div class="stat-card stat-orange">
+    <div class="stat-icon">📖</div>
+    <div class="stat-info"><span class="stat-value" id="statIssued">-</span><span class="stat-label">Books Issued</span></div>
+  </div>
+  <div class="stat-card stat-red">
+    <div class="stat-icon">⚠️</div>
+    <div class="stat-info"><span class="stat-value" id="statOverdue">-</span><span class="stat-label">Overdue</span></div>
+  </div>
+  <div class="stat-card stat-teal">
+    <div class="stat-icon">🔁</div>
+    <div class="stat-info"><span class="stat-value" id="statReturned">-</span><span class="stat-label">Returned</span></div>
+  </div>
+</div>
+
+<div class="panels">
+  <div class="panel">
+    <div class="panel-header"><h3>Books by Category</h3></div>
+    <div id="categoryList" class="category-list"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-header"><h3>Recent Transactions</h3></div>
+    <table class="data-table">
+      <thead><tr><th>Book</th><th>Member</th><th>Issue Date</th><th>Due Date</th><th>Status</th></tr></thead>
+      <tbody id="recentTransactions"></tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{% static 'js/dashboard.js' %}"></script>{% endblock %}

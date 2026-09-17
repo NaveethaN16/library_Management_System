@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Issue / Return - LibraSys{% endblock %}
+{% block nav_transactions %}active{% endblock %}
+{% block page_title %}Issue &amp; Return Books{% endblock %}
+{% block content %}
+<div class="panel">
+  <div class="panel-header"><h3>Issue a Book</h3></div>
+  <form id="issueForm" class="inline-form">
+    <div class="form-row">
+      <label>Book</label>
+      <select id="issueBook" required></select>
+    </div>
+    <div class="form-row">
+      <label>Member</label>
+      <select id="issueMember" required></select>
+    </div>
+    <button type="submit" class="btn btn-primary">Issue Book</button>
+    <div class="form-error" id="issueFormError"></div>
+  </form>
+</div>
+
+<div class="toolbar">
+  <h3 class="toolbar-title">Transaction History</h3>
+  <select id="statusFilter" class="select-input">
+    <option value="">All Status</option>
+    <option value="ISSUED">Issued</option>
+    <option value="OVERDUE">Overdue</option>
+    <option value="RETURNED">Returned</option>
+  </select>
+</div>
+
+<div class="panel">
+  <table class="data-table">
+    <thead>
+      <tr><th>Book</th><th>Member</th><th>Issue Date</th><th>Due Date</th><th>Return Date</th><th>Status</th><th>Fine (₹)</th><th>Action</th></tr>
+    </thead>
+    <tbody id="transactionsTableBody"></tbody>
+  </table>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{% static 'js/transactions.js' %}"></script>{% endblock %}
